@@ -1,0 +1,64 @@
+name: presence
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  firebase_core: 2.4.1
+  line_awesome_flutter: ^2.0.0
+  firebase_auth:
+  cloud_firestore:
+  firebase_storage:
+  image_picker: 0.8.6+1
+  path_provider: 2.0.12
+  convex_bottom_bar: 3.0.0
+  intl: 0.18.0
+  syncfusion_flutter_datepicker: ^19.4.56
+  geolocator: ^8.2.1
+  geocoding: 2.0.5
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: 2.0.1
+  flutter_test: 
+    sdk: flutter
+  flutter_launcher_icons: ^0.12.0
+  flutter_native_splash: ^2.2.11
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/images/logo_1200.png"
+  android: true
+  ios: true
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app-icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/icons/app-icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/icons/app-icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+
+
+flutter: 
+  assets: 
+    - assets/images/logo.png
+    - assets/images/logoputih.png
+    - assets/images/reset.jpg
+    - assets/images/masking.png
+    - assets/images/login.png
+    - assets/images/logout.png
+    - assets/icons/
+  uses-material-design: true
+

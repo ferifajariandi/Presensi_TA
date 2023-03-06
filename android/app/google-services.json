@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "843266944089",
+    "project_id": "presensi-karyawan-f89b3",
+    "storage_bucket": "presensi-karyawan-f89b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843266944089:android:ad3ef4a9e6a77942b8d548",
+        "android_client_info": {
+          "package_name": "presence.untitled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843266944089-7cdjk07bhvgqam56hubm8vd7r5nh2ijt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ7S9-AVOCIsGpvkN5YMU9EotZdfUQQIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843266944089-7cdjk07bhvgqam56hubm8vd7r5nh2ijt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
