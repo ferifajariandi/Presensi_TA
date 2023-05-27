@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
@@ -19,6 +20,7 @@ class ProfileController extends GetxController {
 
   void logout() async {
         await auth.signOut();
+        Get.snackbar('Berhasil','Anda telah logout',duration: Duration(seconds: 3), backgroundColor: Colors.white60);
         Get.offAllNamed(Routes.LOGIN);
       }
 

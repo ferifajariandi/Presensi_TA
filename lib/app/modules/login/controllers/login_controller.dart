@@ -49,7 +49,7 @@ class LoginController extends GetxController {
                       isLoadingBar.value = false;
                       Get.back();
                     },
-                    child: Text("Cancel"),
+                    child: const Text("Cancel"),
                   ),
                   ElevatedButton(
                     onPressed: () async {
@@ -58,7 +58,7 @@ class LoginController extends GetxController {
                         Get.back();
                         Get.snackbar("Berhasil",
                             "Kami telah mengirim email verifikasi ke akun kamu",
-                            duration: Duration(seconds: 3),
+                            duration: const Duration(seconds: 3),
                             backgroundColor: Colors.white60);
                         isLoadingBar.value = false;
                         // isLoading.value = false;
@@ -67,11 +67,11 @@ class LoginController extends GetxController {
                         // isLoading.value = false;
                         Get.snackbar("Terjadi Kesalahan",
                             "Tidak dapat mengirim email verifikasi",
-                            duration: Duration(seconds: 3),
+                            duration: const Duration(seconds: 3),
                             backgroundColor: Colors.white60);
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       "Kirim Ulang",
                     ),
                   ),
@@ -85,20 +85,20 @@ class LoginController extends GetxController {
         // isLoading.value = false;
         if (e.code == "user-not-found") {
           Get.snackbar("Terjadi Kesalahan", "Email tidak terdaftar",
-              duration: Duration(seconds: 3), backgroundColor: Colors.white60);
+              duration: const Duration(seconds: 3), backgroundColor: Colors.white60);
         } else if (e.code == "wrong-password") {
           Get.snackbar("Terjadi Kesalahan", "Password tidak sesuai",
-              duration: Duration(seconds: 3), backgroundColor: Colors.white60);
+              duration: const Duration(seconds: 3), backgroundColor: Colors.white60);
         }
       } catch (e) {
         isLoadingBar.value = false;
         // isLoading.value = false;
         Get.snackbar("Terjadi Kesalahan", "Tidak dapat login.",
-            duration: Duration(seconds: 3), backgroundColor: Colors.white60);
+            duration: const Duration(seconds: 3), backgroundColor: Colors.white60);
       }
     } else {
       Get.snackbar("Terjadi Kesalahan", "Email dan password wajib diisi.",
-          duration: Duration(seconds: 3), backgroundColor: Colors.white60);
+          duration: const Duration(seconds: 3), backgroundColor: Colors.white60);
     }
   }
 }

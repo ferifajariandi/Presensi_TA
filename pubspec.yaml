@@ -8,8 +8,10 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
-  firebase_core: 2.4.1
+  firebase_core: 2.13.0
   line_awesome_flutter: ^2.0.0
+  cached_network_image: ^3.2.3
+  shimmer: ^2.0.0
   firebase_auth:
   cloud_firestore:
   firebase_storage:
@@ -20,6 +22,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^19.4.56
   geolocator: ^8.2.1
   geocoding: 2.0.5
+  flutter_webview_pro: ^3.0.1+4
   flutter: 
     sdk: flutter
 

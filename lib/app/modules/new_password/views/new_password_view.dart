@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:presence/app/modules/login/views/login_view.dart';
 import 'package:get/get.dart';
-
+import '../../profile/views/buttonPrimary.dart';
 import '../controllers/new_password_controller.dart';
 
 class NewPasswordView extends GetView<NewPasswordController> {
@@ -13,27 +13,29 @@ class NewPasswordView extends GetView<NewPasswordController> {
         appBar: AppBar(
           title: const Text('New Password'),
           centerTitle: true,
+          backgroundColor: ColorConstants.background,
         ),
         body: ListView(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           children: [
             TextField(
               autocorrect: false,
               obscureText: true,
               controller: controller.newPassC,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "New Password",
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
+              style: buttonPrimary,
               onPressed: () {
                 controller.newPassword();
               },
-              child: Text("Kirim"),
+              child: const Text("Kirim"),
             ),
           ],
         ));

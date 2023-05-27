@@ -14,6 +14,10 @@ abstract class Routes {
   static const DETAIL_PRESENSI = _Paths.DETAIL_PRESENSI;
   static const ALL_PRESENSI = _Paths.ALL_PRESENSI;
   static const SPLASH = _Paths.SPLASH;
+  static const CEK_JADWAL = _Paths.CEK_JADWAL;
+  static const PERMOHONAN_IZIN = _Paths.PERMOHONAN_IZIN;
+  static const HELP_SUPPORT = _Paths.HELP_SUPPORT;
+  static const MANAGE_ACCOUNT = _Paths.MANAGE_ACCOUNT;
 }
 
 abstract class _Paths {
@@ -29,4 +33,8 @@ abstract class _Paths {
   static const DETAIL_PRESENSI = '/detail-presensi';
   static const ALL_PRESENSI = '/all-presensi';
   static const SPLASH = '/splash';
+  static const CEK_JADWAL = '/cek-jadwal';
+  static const PERMOHONAN_IZIN = '/permohonan-izin';
+  static const HELP_SUPPORT = '/help-support';
+  static const MANAGE_ACCOUNT = '/manage-account';
 }

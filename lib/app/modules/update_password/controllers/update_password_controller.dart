@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UpdatePasswordController extends GetxController {
@@ -25,26 +26,26 @@ class UpdatePasswordController extends GetxController {
           // await auth.signOut();
 
           Get.back();
-          Get.snackbar("Berhasil", "Berhasil update password");
+          Get.snackbar("Berhasil", "Berhasil update password", duration: Duration(seconds: 3), backgroundColor: Colors.white60);
 
 
 
         } on FirebaseAuthException catch (e) {
           if (e.code == "wrong-password") {
             Get.snackbar("Terjadi Kesalahan",
-                "Password yang dimasukan salah. Tidak dapat update password");
+                "Password yang dimasukan salah. Tidak dapat update password", duration: Duration(seconds: 3), backgroundColor: Colors.white60);
           } else {
             Get.snackbar("Terjadi Kesalahan", "${e.code.toLowerCase()}");
           }
         } catch (e) {
-          Get.snackbar("Terjadi Kesalahan", "Tidak dapat update password");
+          Get.snackbar("Terjadi Kesalahan", "Tidak dapat update password", duration: Duration(seconds: 3), backgroundColor: Colors.white60);
         } finally {
           isLoading.value = false;
         }
     } else {
-      Get.snackbar("Terjadi Kesalahan", "Confirm password tidak cocok");
+      Get.snackbar("Terjadi Kesalahan", "Confirm password tidak cocok", duration: Duration(seconds: 3), backgroundColor: Colors.white60);
     }
   } else {
-      Get.snackbar("Terjadi Kesalahan", "Semua input wajib diisi");
+      Get.snackbar("Terjadi Kesalahan", "Semua input wajib diisi", duration: Duration(seconds: 3), backgroundColor: Colors.white60);
     }
 }}

@@ -23,15 +23,30 @@ class PageIndexController extends GetxController {
               position.latitude, position.longitude);
           String address =
               "${placemarks[0].subLocality}, ${placemarks[0].locality}, ${placemarks[0].administrativeArea}";
-          await updatePosition(position, address);
 
-          // cek jarak distance beetwen 2 posisi
+          // cek jarak distance antara 2 posisi device
           double distance = Geolocator.distanceBetween(
               -6.9142617, 110.57246693, position.latitude, position.longitude);
-          // presensi
-          await presensi(position, address, distance);
+
+          const double MAX_DISTANCE = 200;
+          if (distance <= MAX_DISTANCE) {
+            await updatePosition(position, address);
+            await presensi(position, address, distance);
+          } else {
+            Get.snackbar(
+              "Terjadi Kesalahan",
+              "Anda berada di luar area presensi.",
+              duration: Duration(seconds: 3),
+              backgroundColor: Colors.white60,
+            );
+          }
         } else {
-          Get.snackbar("Terjadi Kesalahan", dataResponse["message"]);
+          Get.snackbar(
+            "Terjadi Kesalahan",
+            dataResponse["message"],
+            duration: Duration(seconds: 3),
+            backgroundColor: Colors.white60,
+          );
         }
         break;
       case 2:
@@ -58,7 +73,6 @@ class PageIndexController extends GetxController {
   }
 
   // melakukan presensi
-
   Future<void> presensi(
       Position position, String address, double distance) async {
     String uid = await auth.currentUser!.uid;
@@ -71,15 +85,14 @@ class PageIndexController extends GetxController {
 
     String status = "Di luar area jangkauan";
 
-
     // jika jarak kurang dari 200 meter maka di dalam jangkauan
     if (distance <= 200) {
       status = "Di dalam area jangkauan.";
     }
 
+
     if (snapPresence.docs.length == 0) {
       //  belum pernah absen & set absen masuk
-
       await Get.defaultDialog(
           title: "Validasi Presensi",
           middleText: "Apakah kamu yakin akan absen sekarang?",
@@ -102,7 +115,7 @@ class PageIndexController extends GetxController {
                     }
                   });
                   Get.back();
-                  Get.snackbar("Berhasil", "Kamu berhasil absen masuk.");
+                  Get.snackbar("Berhasil", "Kamu berhasil absen masuk.", duration: Duration(seconds: 3), backgroundColor: Colors.white60);
                 },
                 child: Text("OK"))
           ]);
@@ -116,7 +129,8 @@ class PageIndexController extends GetxController {
         Map<String, dynamic>? dataPresenceToday = todayDoc.data();
         if (dataPresenceToday?["keluar"] != null) {
           // sudah masuk dan keluar
-          Get.snackbar("Informasi", "Kamu telah absen masuk & keluar, Tidak dapat mengubah data kembali.");
+          Get.snackbar("Informasi",
+              "Kamu telah absen masuk & keluar, Tidak dapat mengubah data kembali.", duration: Duration(seconds: 3), backgroundColor: Colors.white60);
         } else {
           //  absen keluar
           await Get.defaultDialog(
@@ -140,7 +154,7 @@ class PageIndexController extends GetxController {
                         }
                       });
                       Get.back();
-                      Get.snackbar("Berhasil", "Kamu berhasil absen keluar.");
+                      Get.snackbar("Berhasil", "Kamu berhasil absen keluar.",duration: Duration(seconds: 3), backgroundColor: Colors.white60);
                     },
                     child: Text("OK"))
               ]);
@@ -170,7 +184,7 @@ class PageIndexController extends GetxController {
                       },
                     );
                     Get.back();
-                    Get.snackbar("Berhasil", "Kamu berhasil absen masuk.");
+                    Get.snackbar("Berhasil", "Kamu berhasil absen masuk.", duration: Duration(seconds: 3), backgroundColor: Colors.white60);
                   },
                   child: Text("OK"))
             ]);

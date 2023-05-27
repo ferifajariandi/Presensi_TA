@@ -13,7 +13,7 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kata Sandi'),
+        title: const Text('Ubah Kata Sandi'),
         centerTitle: true,
         backgroundColor: ColorConstants.background,
         elevation: 0,
@@ -36,11 +36,12 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
                       fontWeight: FontWeight.w400,
                       fontSize: 16
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextField(
                   obscureText: true,
                   controller: controller.currC,
@@ -63,7 +64,7 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10,right: 10),
+                padding: const EdgeInsets.only(left: 20,right: 20),
                 child: TextField(
                   obscureText: true,
                   controller: controller.newC,
@@ -85,7 +86,7 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextField(
                   obscureText: true,
                   controller: controller.confirmC,
@@ -117,8 +118,8 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
                       }
                     },
                     child: Text((controller.isLoading.isFalse)
-                        ? "CHANGE PASSWORD"
-                        : "LOADING..."),
+                        ? "SIMPAN"
+                        : "LOADING...", style: TextStyle(fontSize: 18,),),
                   ),
                 ),
               ),

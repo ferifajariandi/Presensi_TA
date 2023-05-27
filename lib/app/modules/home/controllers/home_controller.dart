@@ -19,9 +19,9 @@ class HomeController extends GetxController {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> streamLastPresence() async* {
     String uid = auth.currentUser!.uid;
-
+    // jika ingin data terakhir absensi realtime maka hapus descending
     yield* firestore.collection("pegawai").doc(uid).collection("presence")
-        .orderBy("date", descending: true).limitToLast(5)
+        .orderBy("date").limitToLast(5)
         .snapshots();
   }
 

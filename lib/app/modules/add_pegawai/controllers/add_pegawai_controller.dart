@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:presence/app/modules/login/views/login_view.dart';
 
 class AddPegawaiController extends GetxController {
   RxBool isLoading = false.obs;
@@ -54,30 +55,37 @@ class AddPegawaiController extends GetxController {
 
           Get.back();
           Get.back();
-          Get.snackbar("Berhasil", "Berhasil menambahkan pegawai");
+          Get.snackbar("Berhasil", "Berhasil menambahkan pegawai",
+              duration: Duration(seconds: 3), backgroundColor: Colors.white60);
           isLoadingAddPegawai.value = false;
         }
       } on FirebaseAuthException catch (e) {
         isLoadingAddPegawai.value = false;
         if (e.code == 'weak-password') {
-          Get.snackbar("Terjadi Kesalahan", "Password terlalu singkat.");
+          Get.snackbar("Terjadi Kesalahan", "Password terlalu singkat.",
+              duration: Duration(seconds: 3), backgroundColor: Colors.white60);
         } else if (e.code == 'email-already-in-use') {
           Get.snackbar("Terjadi Kesalahan",
-              "Pegawai sudah ada. Kamu tidak dapat menambahkan pegawai dengan email ini.");
+              "Pegawai sudah ada. Kamu tidak dapat menambahkan pegawai dengan email ini.",
+              duration: Duration(seconds: 3), backgroundColor: Colors.white60);
         } else if (e.code == "wrong-password") {
           Get.snackbar(
-              "Terjadi Kesalahan", "Admin tidak dapat login, Password salah!");
+              "Terjadi Kesalahan", "Admin tidak dapat menambahkan pegawai, Password salah!",
+              duration: Duration(seconds: 3), backgroundColor: Colors.white60);
         } else {
-          Get.snackbar("Terjadi Kesalahan", "${e.code}");
+          Get.snackbar("Terjadi Kesalahan", "${e.code}",
+              duration: Duration(seconds: 3), backgroundColor: Colors.white60);
         }
       } catch (e) {
         isLoadingAddPegawai.value = false;
-        Get.snackbar("Terjadi Kesalahan", "Tidak dapat menambahkan pegawai.");
+        Get.snackbar("Terjadi Kesalahan", "Tidak dapat menambahkan pegawai.",
+            duration: Duration(seconds: 3), backgroundColor: Colors.white60);
       }
     } else {
       isLoading.value = false;
       Get.snackbar(
-          "Terjadi Kesalahan", "Password wajib diisi untuk melakukan validasi");
+          "Terjadi Kesalahan", "Password wajib diisi untuk melakukan validasi",
+          duration: Duration(seconds: 3), backgroundColor: Colors.white60);
     }
   }
 
@@ -92,14 +100,14 @@ class AddPegawaiController extends GetxController {
         title: "Validasi Admin",
         content: Column(
           children: [
-            Text(
+            const Text(
               "Silahkan masukan password untuk memvalidasi admin !",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextField(
@@ -107,7 +115,9 @@ class AddPegawaiController extends GetxController {
               obscureText: true,
               decoration: InputDecoration(
                 labelText: "Password",
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+
+                ),
               ),
             )
           ],
@@ -118,25 +128,34 @@ class AddPegawaiController extends GetxController {
               isLoading.value = false;
               Get.back();
             },
-            child: Text("Cancel"),
+            child: const Text("Cancel", style: TextStyle(color: Colors.redAccent),),
           ),
           Obx(
-            () => ElevatedButton(
+            () => ElevatedButton.icon(
               onPressed: () async {
                 if (isLoadingAddPegawai.isFalse) {
                   await prosesAddPegawai();
                 }
                 isLoading.value = false;
               },
-              child: Text(
+              icon: Icon(Icons.person_add_alt_1_rounded),
+              label: Text(
                   isLoadingAddPegawai.isFalse ? "Add Pegawai" : "LOADING..."),
+              style: ElevatedButton.styleFrom(
+                elevation: 1,
+                primary: ColorConstants.buttonLogout,
+              ),
+              // child: Text(
+              //     isLoadingAddPegawai.isFalse ? "Add Pegawai" : "LOADING..."),
             ),
           ),
         ],
       );
 //
     } else {
-      Get.snackbar("Terjadi Kesalahan", "NIP, nama, pekerjaan, dan email harus diisi.");
+      Get.snackbar(
+          "Terjadi Kesalahan", "NIP, nama, pekerjaan, dan email harus diisi.",
+          duration: Duration(seconds: 3), backgroundColor: Colors.white60);
     }
   }
 }

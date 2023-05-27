@@ -1,21 +1,27 @@
 import 'package:get/get.dart';
 
-import '../modules/SPLASH/bindings/splash_binding.dart';
-import '../modules/SPLASH/views/splash_view.dart';
 import '../modules/add_pegawai/bindings/add_pegawai_binding.dart';
 import '../modules/add_pegawai/views/add_pegawai_view.dart';
 import '../modules/all_presensi/bindings/all_presensi_binding.dart';
 import '../modules/all_presensi/views/all_presensi_view.dart';
+import '../modules/cek_jadwal/bindings/cek_jadwal_binding.dart';
+import '../modules/cek_jadwal/bindings/cek_jadwal_binding.dart';
+import '../modules/cek_jadwal/views/cek_jadwal_view.dart';
+import '../modules/cek_jadwal/views/cek_jadwal_view.dart';
 import '../modules/detail_presensi/bindings/detail_presensi_binding.dart';
 import '../modules/detail_presensi/views/detail_presensi_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
+import '../modules/help_support/bindings/help_support_binding.dart';
+import '../modules/help_support/views/help_support_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/new_password/bindings/new_password_binding.dart';
 import '../modules/new_password/views/new_password_view.dart';
+import '../modules/permohonan_izin/bindings/permohonan_izin_binding.dart';
+import '../modules/permohonan_izin/views/permohonan_izin_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/update_password/bindings/update_password_binding.dart';
@@ -58,12 +64,11 @@ class AppPages {
       binding: ForgotPasswordBinding(),
     ),
     GetPage(
-      name: _Paths.PROFILE,
-      page: () => ProfileView(),
-      binding: ProfileBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration(seconds: 1)
-    ),
+        name: _Paths.PROFILE,
+        page: () => ProfileView(),
+        binding: ProfileBinding(),
+        transition: Transition.fadeIn,
+        transitionDuration: Duration(seconds: 1)),
     GetPage(
       name: _Paths.UPDATE_PROFILE,
       page: () => UpdateProfileView(),
@@ -86,9 +91,26 @@ class AppPages {
       binding: AllPresensiBinding(),
     ),
     GetPage(
-      name: _Paths.SPLASH,
-      page: () => const SplashView(),
-      binding: SplashBinding(),
+      name: _Paths.CEK_JADWAL,
+      page: () => CekJadwalView(),
+      binding: CekJadwalBinding(),
+      children: [
+        GetPage(
+          name: _Paths.CEK_JADWAL,
+          page: () => CekJadwalView(),
+          binding: CekJadwalBinding(),
+        ),
+      ],
+    ),
+    GetPage(
+      name: _Paths.PERMOHONAN_IZIN,
+      page: () => PermohonanIzinView(),
+      binding: PermohonanIzinBinding(),
+    ),
+    GetPage(
+      name: _Paths.HELP_SUPPORT,
+      page: () => const HelpSupportView(),
+      binding: HelpSupportBinding(),
     ),
   ];
 }

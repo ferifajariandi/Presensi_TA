@@ -153,10 +153,6 @@ class LoginView extends GetView<LoginController> {
                                       await controller.login();
                                     }
                                   },
-
-                                  // controller.isLoadingBar.value
-                                  // ? null
-                                  // : () => controller.sendEmail()),
                                   icon: controller.isLoadingBar.value
                                       ? Transform.scale(
                                           scale: 0.5,
@@ -184,34 +180,6 @@ class LoginView extends GetView<LoginController> {
                                               BorderRadius.circular(10))),
                                 ),
                               ),
-
-                              // Obx(
-                              //   () => MaterialButton(
-                              //     onPressed: () async {
-                              //       if (controller.isCircularLoading.isFalse) {
-                              //         await controller.login();
-                              //       }
-                              //     },
-                              //     color: ColorConstants.buttonColor,
-                              //     shape: RoundedRectangleBorder(
-                              //       borderRadius: BorderRadius.circular(10),
-                              //     ),
-                              //     child: Padding(
-                              //       padding: const EdgeInsets.symmetric(
-                              //           horizontal: 10, vertical: 11),
-                              //       child: Text(
-                              //         controller.isCircularLoading.isFalse
-                              //             ? "LOGIN"
-                              //             : "LOADING...",
-                              //         style: const TextStyle(
-                              //           color: Colors.white,
-                              //           fontSize: 18,
-                              //           fontWeight: FontWeight.w700,
-                              //         ),
-                              //       ),
-                              //     ),
-                              //   ),
-                              // ),
                               const SizedBox(
                                 height: 15,
                               ),

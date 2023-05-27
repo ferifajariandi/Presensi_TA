@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:presence/app/modules/login/views/login_view.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../routes/app_pages.dart';
@@ -18,13 +19,14 @@ class AllPresensiView extends GetView<AllPresensiController> {
           title: const Text('Semua Presensi'),
           centerTitle: true,
           elevation: 0,
+          backgroundColor: ColorConstants.background,
         ),
         body: GetBuilder<AllPresensiController>(
           builder: (c) => FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
               future: controller.getPresence(),
               builder: (context, snap) {
                 if(snap.connectionState == ConnectionState.waiting){
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
@@ -37,8 +39,8 @@ class AllPresensiView extends GetView<AllPresensiController> {
                   );
                 }
                 return ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.all(20),
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(20),
                   itemCount: snap.data!.docs.length,
                   itemBuilder: (context, index) {
                     Map<String, dynamic> data = snap.data!.docs[index].data();
@@ -47,6 +49,7 @@ class AllPresensiView extends GetView<AllPresensiController> {
                       child: Material(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.grey[200],
+                        elevation: 2,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(20),
                           onTap: () =>
@@ -77,19 +80,31 @@ class AllPresensiView extends GetView<AllPresensiController> {
                                     ),
                                   ],
                                 ),
-                                Text(data['masuk']?['date'] == null
-                                    ? "-"
-                                    : "${DateFormat.jms().format(DateTime.parse(data['masuk']!['date']))}"),
-                                SizedBox(height: 10),
+                                Text(
+                                  data['masuk']?['date'] == null
+                                      ? '-'
+                                      : '${DateFormat.jms('id_ID').format(DateTime.parse(data['masuk']!['date']).toLocal())} WIB',
+                                ),
+                                // Text(
+                                //     data['masuk']?['date'] == null
+                                //     ? "-"
+                                //     : "${DateFormat.jms().format(DateTime.parse(data['masuk']!['date']))}"),
+                                const SizedBox(height: 10),
                                 const Text(
                                   "Keluar",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(data['keluar']?['date'] == null
-                                    ? "-"
-                                    : "${DateFormat.jms().format(DateTime.parse(data['keluar']!['date']))}"),
+                                Text(
+                                  data['keluar']?['date'] == null
+                                      ? '-'
+                                      : '${DateFormat.jms('id_ID').format(DateTime.parse(data['keluar']!['date']).toLocal())} WIB',
+                                ),
+
+                                // Text(data['keluar']?['date'] == null
+                                //     ? "-"
+                                //     : "${DateFormat.jms().format(DateTime.parse(data['keluar']!['date']))}"),
                               ],
                             ),
                           ),
@@ -102,17 +117,22 @@ class AllPresensiView extends GetView<AllPresensiController> {
           ),
         ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: ColorConstants.buttonLogout,
         onPressed: (){
         //  syncfunction datepicker
           Get.dialog(
             Dialog(
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 height: 400,
                 child: SfDateRangePicker(
-                  monthViewSettings: DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
+                  monthViewSettings: const DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
                   selectionMode: DateRangePickerSelectionMode.range,
                   showActionButtons: true,
+                  startRangeSelectionColor: ColorConstants.buttonLogout,
+                  endRangeSelectionColor: ColorConstants.buttonLogout,
+                  rangeSelectionColor: ColorConstants.background,
+                  todayHighlightColor: ColorConstants.buttonLogout,
                   onCancel: ()=> Get.back(),
                   onSubmit: (obj){
                     print(obj);
@@ -129,7 +149,7 @@ class AllPresensiView extends GetView<AllPresensiController> {
           );
 
         },
-        child: Icon(Icons.format_list_bulleted_rounded),
+        child: const Icon(Icons.date_range_outlined),
       ),
             );
   }

@@ -20,8 +20,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-
-
   final pageC = Get.put(PageIndexController(), permanent: true);
 
   runApp(

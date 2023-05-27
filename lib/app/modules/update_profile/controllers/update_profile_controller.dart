@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:firebase_storage/firebase_storage.dart' as s;
 
 class UpdateProfileController extends GetxController {
@@ -12,8 +10,6 @@ class UpdateProfileController extends GetxController {
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   RxBool isLoading = false.obs;
-
-
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
@@ -42,29 +38,33 @@ class UpdateProfileController extends GetxController {
 
           await storage.ref('$uid/profile.$ext').putFile(file);
 
-          String urlImage = await storage.ref('$uid/profile.$ext').getDownloadURL();
+          String urlImage =
+              await storage.ref('$uid/profile.$ext').getDownloadURL();
 
           data.addAll({"profile": urlImage});
         }
         await firestore.collection("pegawai").doc(uid).update(data);
         image = null;
-        Get.snackbar("Berhasil", "Berhasil update profile");
+        Get.snackbar("Berhasil", "Berhasil update profile",
+            duration: const Duration(seconds: 3), backgroundColor: Colors.white60);
       } catch (e) {
-        Get.snackbar("Terjadi Kesalahan", "Tidak dapat update profile.");
+        Get.snackbar("Terjadi Kesalahan", "Tidak dapat update profile.",
+            duration: const Duration(seconds: 3), backgroundColor: Colors.white60);
       } finally {
         isLoading.value = false;
       }
     }
   }
+
   void deleteProfile(String uid) async {
     try {
-    firestore.collection("pegawai").doc(uid).update({
-      "profile": FieldValue.delete(),
-    });
-    Get.back();
-    Get.snackbar("Berhasil", "Berhasil delete profile picture");
+      firestore.collection("pegawai").doc(uid).update({
+        "profile": FieldValue.delete(),
+      });
+      Get.back();
+      Get.snackbar("Berhasil", "Berhasil hapus foto profil", duration: const Duration(seconds: 3), backgroundColor: Colors.white60);
     } catch (e) {
-      Get.snackbar("Terjadi Kesalahan", "Tidak dapat delete profile picture");
+      Get.snackbar("Terjadi Kesalahan", "Tidak dapat hapus foto profil.", duration: const Duration(seconds: 3), backgroundColor: Colors.white60);
     } finally {
       update();
     }

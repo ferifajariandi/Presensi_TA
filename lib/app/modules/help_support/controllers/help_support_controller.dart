@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class SplashController extends GetxController {
-  //TODO: Implement SplashController
+class HelpSupportController extends GetxController {
+  //TODO: Implement HelpSupportController
 
   final count = 0.obs;
   @override
