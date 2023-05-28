@@ -109,7 +109,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HELP_SUPPORT,
-      page: () => const HelpSupportView(),
+      page: () => HelpSupportView(),
       binding: HelpSupportBinding(),
     ),
   ];

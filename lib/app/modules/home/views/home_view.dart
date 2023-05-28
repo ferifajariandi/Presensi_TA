@@ -248,7 +248,7 @@ class HomeView extends GetView<HomeController> {
                                           Text(
                                             dataToday?['masuk']?['date'] == null
                                                 ? '-'
-                                                : '$formattedTime WIB',
+                                                : "${DateFormat.jms('id_ID').format(DateTime.parse(dataToday?['masuk']['date']).toLocal())} WIB",
                                           ),
                                           Row(
                                             children: [
@@ -299,10 +299,9 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                           ),
                                           Text(
-                                            dataToday?['keluar']?['date'] ==
-                                                    null
+                                            dataToday?['keluar']?['date'] == null
                                                 ? '-'
-                                                : '$formattedTime WIB',
+                                                : "${DateFormat.jms('id_ID').format(DateTime.parse(dataToday?['keluar']['date']).toLocal())} WIB",
                                           ),
                                           Row(
                                             children: [
@@ -524,7 +523,7 @@ class HomeView extends GetView<HomeController> {
               controller: tabController,
               onTap: (int index) {
                 // Tangani pemilihan tab
-                tabController.animateTo(index);
+                pageC.changePage(index);
               },
             );
           },
